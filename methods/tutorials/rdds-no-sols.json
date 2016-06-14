@@ -1,0 +1,2212 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n###RDD - Resilient Distributed Dataset\n\nThe Resilient Distributed Dataset (RDD) is the primary data abstraction in Spark. An RDD is:\n\n* Immutable, i.e. it does not change once created.\n* Lazily evaluated, i.e. the data inside RDD is not available or transformed until an action is executed that triggers the execution.\n* Cacheable, i.e. you can hold all the data in memory (default and the most preferred) or disk.\n* Partitioned, i.e. sharded for parallel processing.\n* Organized by lineage, i.e. knows how to compute itself based on its parents.\n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": false,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120968_1010573525",
+      "id": "20160524-184607_168739139",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>RDD - Resilient Distributed Dataset</h3>\n<p>The Resilient Distributed Dataset (RDD) is the primary data abstraction in Spark. An RDD is:</p>\n<ul>\n<li>Immutable, i.e. it does not change once created.</li>\n<li>Lazily evaluated, i.e. the data inside RDD is not available or transformed until an action is executed that triggers the execution.</li>\n<li>Cacheable, i.e. you can hold all the data in memory (default and the most preferred) or disk.</li>\n<li>Partitioned, i.e. sharded for parallel processing.</li>\n<li>Organized by lineage, i.e. knows how to compute itself based on its parents.</li>\n</ul>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:207"
+    },
+    {
+      "text": "%md\n###Using RDDs\n\nUsers create RDDs in two ways: \n* by loading an external dataset, or \n* by distributing a collection of objects (e.g., a list or set) in their driver program. ",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120968_1010573525",
+      "id": "20160524-190023_1764885633",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Using RDDs</h3>\n<p>Users create RDDs in two ways:</p>\n<ul>\n<li>by loading an external dataset, or</li>\n<li>by distributing a collection of objects (e.g., a list or set) in their driver program.</li>\n</ul>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:208"
+    },
+    {
+      "text": "val lines = sc.parallelize(List(1,2,3,4),2)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120968_1010573525",
+      "id": "20160524-190112_462096521",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "lines: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[11] at parallelize at <console>:45\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:209"
+    },
+    {
+      "text": "%md\n`SparkContext.parallelize` is mainly used to learn Spark in the Spark shell, since it requires all the data to be available on the Spark driver.\n\n\nAn RDD is a named (by name) and uniquely identified (by id) entity inside a `SparkContext`. \n\nWhen an RDD is created, it belongs to and is completely owned by the Spark context it originated from. RDDs can’t be shared between SparkContexts, by design",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190125_157224147",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p><code>SparkContext.parallelize</code> is mainly used to learn Spark in the Spark shell, since it requires all the data to be available on the Spark driver.</p>\n<p>An RDD is a named (by name) and uniquely identified (by id) entity inside a <code>SparkContext</code>.</p>\n<p>When an RDD is created, it belongs to and is completely owned by the Spark context it originated from. RDDs can’t be shared between SparkContexts, by design</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:210"
+    },
+    {
+      "text": "// You can optionally assign custom names to RDDs\n\nval ns = sc.parallelize(0 to 10)\nns.name = \"foo\"\nns.toDebugString",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190150_592895773",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "ns: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[12] at parallelize at <console>:47\nns.name: String = foo\nres90: String = (4) foo ParallelCollectionRDD[12] at parallelize at <console>:47 []\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:211"
+    },
+    {
+      "text": "%md\nNamed RDDs are also easily tracked in the [Web UI](http://localhost:4040)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190249_1354113723",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p>Named RDDs are also easily tracked in the <a href=\"http://localhost:4040\">Web UI</a></p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:212"
+    },
+    {
+      "text": "val ints = sc.parallelize(1 to 100) \n    ints.setName(\"Hundred ints\")        \n    ints.cache                       \n    ints.count",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190322_141239459",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "ints: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[13] at parallelize at <console>:45\nres92: ints.type = Hundred ints ParallelCollectionRDD[13] at parallelize at <console>:45\nres93: ints.type = Hundred ints ParallelCollectionRDD[13] at parallelize at <console>:45\nres94: Long = 100\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:213"
+    },
+    {
+      "text": "%md\nOnce created, RDDs offer two types of operations: transformations and actions.\n* **Transformations** are *lazy* operations that construct a new RDD from a previous one. \n* **Actions** are operations that trigger computation and return (non-RDD) values.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190331_1756009862",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p>Once created, RDDs offer two types of operations: transformations and actions.</p>\n<ul>\n<li><strong>Transformations</strong> are <em>lazy</em> operations that construct a new RDD from a previous one.</li>\n<li><strong>Actions</strong> are operations that trigger computation and return (non-RDD) values.</li>\n</ul>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:214"
+    },
+    {
+      "text": "// flatMap is a transformation.\nval nasaAccessLogs = sc.textFile(\"s3://ds12-methods/labs/lab-1/data/NA*\").flatMap(s => s.split(\"[\\\\r\\\\n]+\"))\n// take is an action.\nnasaAccessLogs.take(5)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190343_1080020440",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "nasaAccessLogs: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[19] at flatMap at <console>:46\nres101: Array[String] = Array(in24.inetnebr.com - - [01/Aug/1995:00:00:01 -0400] \"GET /shuttle/missions/sts-68/news/sts-68-mcc-05.txt HTTP/1.0\" 200 1839, uplherc.upl.com - - [01/Aug/1995:00:00:07 -0400] \"GET / HTTP/1.0\" 304 0, uplherc.upl.com - - [01/Aug/1995:00:00:08 -0400] \"GET /images/ksclogo-medium.gif HTTP/1.0\" 304 0, uplherc.upl.com - - [01/Aug/1995:00:00:08 -0400] \"GET /images/MOSAIC-logosmall.gif HTTP/1.0\" 304 0, uplherc.upl.com - - [01/Aug/1995:00:00:08 -0400] \"GET /images/USA-logosmall.gif HTTP/1.0\" 304 0)\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:215"
+    },
+    {
+      "text": "%md\n####Element-wise transformations\n\nThe two most common transformations you will likely be using are `map` and `filter`. A snippet from lab 1 illustrates this:\n\n```scala\nval notFoundErrors = accessLogsClean\n.map(log => (log.ipAddress, log.responseCode))\n.filter(_._2 == 404)\n```",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190400_138914878",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Element-wise transformations</h4>\n<p>The two most common transformations you will likely be using are <code>map</code> and <code>filter</code>. A snippet from lab 1 illustrates this:</p>\n<pre><code class=\"scala\">val notFoundErrors = accessLogsClean\n.map(log =&gt; (log.ipAddress, log.responseCode))\n.filter(_._2 == 404)\n</code></pre>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:216"
+    },
+    {
+      "text": "%md\n###Pair RDDs\nSpark provides special operations on RDDs containing key/value pairs. These RDDs are called pair RDDs and have a number of `PairRDDFunctions` that can be used to manipulate them. \n\nPair RDDs are a useful building block in many programs, as they expose operations that allow you to act on each key in parallel or regroup data\nacross the network. ",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120969_1010188776",
+      "id": "20160524-190445_1952332973",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Pair RDDs</h3>\n<p>Spark provides special operations on RDDs containing key/value pairs. These RDDs are called pair RDDs and have a number of <code>PairRDDFunctions</code> that can be used to manipulate them.</p>\n<p>Pair RDDs are a useful building block in many programs, as they expose operations that allow you to act on each key in parallel or regroup data\n<br  />across the network.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:217"
+    },
+    {
+      "text": "%md\n###Pair-generating transformations\n\nThe following transformations generate RDDs of tuples. The resulting RDD will consist of two-component tuples which can be interpreted as key-value pairs.\n\n####Zip\nZip joins two RDDs by combining the i-th of either partition with each other. This is analogous to the `zip` operation on Scala collections with the additional requirement that both RDDs are partitioned identically. That is, the RDDs must have the *same number of partitions* and the *same number of elements in each partition*.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120970_1011343023",
+      "id": "20160524-190557_2091050683",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Pair-generating transformations</h3>\n<p>The following transformations generate RDDs of tuples. The resulting RDD will consist of two-component tuples which can be interpreted as key-value pairs.</p>\n<h4>Zip</h4>\n<p>Zip joins two RDDs by combining the i-th of either partition with each other. This is analogous to the <code>zip</code> operation on Scala collections with the additional requirement that both RDDs are partitioned identically. That is, the RDDs must have the <em>same number of partitions</em> and the <em>same number of elements in each partition</em>.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:218"
+    },
+    {
+      "text": "val a = sc.parallelize(1 to 10)\nval b = sc.parallelize(2 to 11)\nval zipped = a.zip(b)\nzipped.collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120970_1011343023",
+      "id": "20160524-195500_120628979",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[29] at parallelize at <console>:45\nb: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[30] at parallelize at <console>:45\nzipped: org.apache.spark.rdd.RDD[(Int, Int)] = ZippedPartitionsRDD2[31] at zip at <console>:49\nres108: Array[(Int, Int)] = Array((1,2), (2,3), (3,4), (4,5), (5,6), (6,7), (7,8), (8,9), (9,10), (10,11))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:219"
+    },
+    {
+      "text": "%md\n####KeyBy\n\n`keyBy` constructs key-value pairs by applying a function on each data item. The result of the function becomes the key and the original data item becomes the value of the newly created tuples.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120971_1010958274",
+      "id": "20160524-195545_2113095756",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>KeyBy</h4>\n<p><code>keyBy</code> constructs key-value pairs by applying a function on each data item. The result of the function becomes the key and the original data item becomes the value of the newly created tuples.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:220"
+    },
+    {
+      "text": "val l = List(\"dog\", \"salmon\", \"salmon\", \"rat\")\nval a = sc.parallelize(l)\nval b = a.keyBy(_.length)\nb.collect ",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120971_1009034530",
+      "id": "20160524-211828_1774663402",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, salmon, salmon, rat)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[38] at parallelize at <console>:52\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[39] at keyBy at <console>:54\nres127: Array[(Int, String)] = Array((3,dog), (6,salmon), (6,salmon), (3,rat))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:221"
+    },
+    {
+      "text": "%md\n####GroupBy\n\n`groupBy` constructs key-value pairs by applying a function on each data item and grouping the results.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120972_1009034530",
+      "id": "20160524-224432_349131009",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>GroupBy</h4>\n<p><code>groupBy</code> constructs key-value pairs by applying a function on each data item and grouping the results.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:222"
+    },
+    {
+      "text": "val a = sc.parallelize(1 to 9, 3)\na.groupBy(x => { if (x % 2 == 0) \"even\" else \"odd\" }).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120972_1009034530",
+      "id": "20160524-225754_1532170544",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[40] at parallelize at <console>:50\nres129: Array[(String, Iterable[Int])] = Array((even,CompactBuffer(2, 4, 6, 8)), (odd,CompactBuffer(1, 3, 5, 7, 9)))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:223"
+    },
+    {
+      "text": "%md\n###Pair-RDD transformations\n\nA number of methods have cousins with names like `fooByKey` or `fooValues`. These cousins perform the analagous operations on the first or second part of each tuple respectively.\n\nNote that the keys are carried along with each new value created.\n\n####FlatMapValues\n\n`flatMapValues` runs each value in the key-value pair RDD through a flatMap function without changing the keys.\n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120972_1009034530",
+      "id": "20160524-225825_1018186420",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Pair-RDD transformations</h3>\n<p>A number of methods have cousins with names like <code>fooByKey</code> or <code>fooValues</code>. These cousins perform the analagous operations on the first or second part of each tuple respectively.</p>\n<p>Note that the keys are carried along with each new value created.</p>\n<h4>FlatMapValues</h4>\n<p><code>flatMapValues</code> runs each value in the key-value pair RDD through a flatMap function without changing the keys.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:224"
+    },
+    {
+      "text": "val a = sc.parallelize(List(\"dog\", \"lion\"))\nval b = a.map(x => (x.length, x))\nb.flatMapValues(\"x\" + _ + \"x\").collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160524-230742_1005374632",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[43] at parallelize at <console>:50\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[44] at map at <console>:52\nres131: Array[(Int, Char)] = Array((3,x), (3,d), (3,o), (3,g), (3,x), (4,x), (4,l), (4,i), (4,o), (4,n), (4,x))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:225"
+    },
+    {
+      "text": "%md \n####GroupByKey\n\n`groupByKey` is similar to `groupBy`, but with the key-component of each pair as the grouping function. \n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": false,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160524-233137_10265463",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>GroupByKey</h4>\n<p><code>groupByKey</code> is similar to <code>groupBy</code>, but with the key-component of each pair as the grouping function.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:226"
+    },
+    {
+      "text": "val l = List(\"dog\", \"tiger\", \"lion\", \"cat\", \"spider\", \"eagle\")\nval a = sc.parallelize(l, 2)\nval b = a.keyBy(_.length)\nb.groupByKey.collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160524-233217_1723492200",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, tiger, lion, cat, spider, eagle)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[49] at parallelize at <console>:52\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[50] at keyBy at <console>:54\nres135: Array[(Int, Iterable[String])] = Array((4,CompactBuffer(lion)), (6,CompactBuffer(spider)), (3,CompactBuffer(dog, cat)), (5,CompactBuffer(tiger, eagle)))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:227"
+    },
+    {
+      "text": "%md\n`combineByKey` combines the values of a RDD consisting of two-component tuples by applying multiple aggregators one after another.\n\n`combineByKey` is the most general of the per-key aggregation functions. Most of the other per-key combiners are implemented using it. \n\nLike `aggregate`, `combineByKey` allows the user to return values that are not the same type as our input data.\n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160524-233226_146983935",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p><code>combineByKey</code> combines the values of a RDD consisting of two-component tuples by applying multiple aggregators one after another.</p>\n<p><code>combineByKey</code> is the most general of the per-key aggregation functions. Most of the other per-key combiners are implemented using it.</p>\n<p>Like <code>aggregate</code>, <code>combineByKey</code> allows the user to return values that are not the same type as our input data.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:228"
+    },
+    {
+      "text": "//def combineByKey(f: V => C, \n//                 g: (C, V) => C, \n//                 h: (C, C) = > C): RDD[(K, C)]\nval l = List(\"dog\",\"cat\",\"gnu\",\"linux\",\"android\",\"bee\")\nval a = sc.parallelize(l, 3)\nval b = sc.parallelize(List(1,1,2,2,2,1), 3)\nval c = b.zip(a)\ndef foo(x: List[String], y: String) = y :: x\ndef bar(x: List[String], y: List[String]) = x ::: y\nval d = c.combineByKey(List(_), foo, bar)\nd.collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175032_615347441",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, cat, gnu, linux, android, bee)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[0] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[1] at parallelize at <console>:29\nc: org.apache.spark.rdd.RDD[(Int, String)] = ZippedPartitionsRDD2[2] at zip at <console>:35\nfoo: (x: List[String], y: String)List[String]\nbar: (x: List[String], y: List[String])List[String]\nd: org.apache.spark.rdd.RDD[(Int, List[String])] = ShuffledRDD[3] at combineByKey at <console>:41\nres1: Array[(Int, List[String])] = Array((1,List(cat, dog, bee)), (2,List(linux, gnu, android)))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:229"
+    },
+    {
+      "text": "%md\nAs `combineByKey` goes through the elements in a partition, each element either has a key it hasn’t seen before or has the same key as a previous element.\n\nIf it is a value we have seen before while processing that partition, it will instead use the second provided function (`g` in the above example) with the current value for the accumulator for that key and the new value.\nSince each partition is processed independently, we can have multiple accumulators for the same key. When we are merging the results from each partition, if two or more partitions have an accumulator for the same key we merge the accumulators using the third provided function (`h` in the above example).\n\nWe can disable map-side aggregation in combineByKey if we know that our data won’t benefit from it. For example, groupByKey disables map-side aggregation as the aggregation function (appending to a list) does not save any space. \n\nIf it’s a new element, combineByKey uses a function we provide (`f` in the above example) to create the initial value for the accumulator on that key. \n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175049_2140455821",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p>As <code>combineByKey</code> goes through the elements in a partition, each element either has a key it hasn’t seen before or has the same key as a previous element.</p>\n<p>If it is a value we have seen before while processing that partition, it will instead use the second provided function (<code>g</code> in the above example) with the current value for the accumulator for that key and the new value.\n<br  />Since each partition is processed independently, we can have multiple accumulators for the same key. When we are merging the results from each partition, if two or more partitions have an accumulator for the same key we merge the accumulators using the third provided function (<code>h</code> in the above example).</p>\n<p>We can disable map-side aggregation in combineByKey if we know that our data won’t benefit from it. For example, groupByKey disables map-side aggregation as the aggregation function (appending to a list) does not save any space.</p>\n<p>If it’s a new element, combineByKey uses a function we provide (<code>f</code> in the above example) to create the initial value for the accumulator on that key.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:230"
+    },
+    {
+      "text": "// Per-key average using `combineByKey`:\nval a = sc.parallelize(List(1,2,3,4))\nval b = sc.parallelize(List(1,1,2,2))\nval input = b.zip(a)\ndef f(v: Int) = (v, 1)\ndef g(x: (Int, Int), y: Int) = (x._1+y, x._2+1)\ndef h(x: (Int, Int), y: (Int, Int)) = (x._1+y._1, x._2+y._2)\nval result = input.combineByKey(f, g, h).map { \n    case (key, value) => (key, value._1 / value._2.toFloat) \n}\nresult.collectAsMap()",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175223_418042978",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[4] at parallelize at <console>:30\nb: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[5] at parallelize at <console>:29\ninput: org.apache.spark.rdd.RDD[(Int, Int)] = ZippedPartitionsRDD2[6] at zip at <console>:33\nf: (v: Int)(Int, Int)\ng: (x: (Int, Int), y: Int)(Int, Int)\nh: (x: (Int, Int), y: (Int, Int))(Int, Int)\nresult: org.apache.spark.rdd.RDD[(Int, Float)] = MapPartitionsRDD[8] at map at <console>:41\nres4: scala.collection.Map[Int,Float] = Map(2 -> 3.5, 1 -> 1.5)\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:231"
+    },
+    {
+      "text": "%md\n###Sorting Data\n\nWe can sort an RDD with key/value pairs provided that there is an ordering defined on the key.\n\n`sortByKey` sorts the input RDD's data and stores it in a new RDD. The output RDD is a shuffled RDD because it stores data that is output by a reducer which has been shuffled (more on shuffled RDDs soon).\n\nThe implementation of `sortByKey` is actually very clever. First, it uses a range partitioner to partition the data in ranges within the shuffled RDD. Then it sorts these ranges individually with `mapPartition`s using standard sort mechanisms.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175458_901129488",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Sorting Data</h3>\n<p>We can sort an RDD with key/value pairs provided that there is an ordering defined on the key.</p>\n<p><code>sortByKey</code> sorts the input RDD's data and stores it in a new RDD. The output RDD is a shuffled RDD because it stores data that is output by a reducer which has been shuffled (more on shuffled RDDs soon).</p>\n<p>The implementation of <code>sortByKey</code> is actually very clever. First, it uses a range partitioner to partition the data in ranges within the shuffled RDD. Then it sorts these ranges individually with <code>mapPartition</code>s using standard sort mechanisms.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:232"
+    },
+    {
+      "text": "//def sortByKey(ascending: Boolean = true): RDD[P]\nval l = List(\"dog\", \"cat\", \"owl\", \"gnu\", \"ant\")\nval a = sc.parallelize(l)\nval b = sc.parallelize(List(1,2,3,4,5))\nval c = a.zip(b)\nc.sortByKey(true).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175614_2103523132",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, cat, owl, gnu, ant)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[9] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[10] at parallelize at <console>:29\nc: org.apache.spark.rdd.RDD[(String, Int)] = ZippedPartitionsRDD2[11] at zip at <console>:35\nres8: Array[(String, Int)] = Array((ant,5), (cat,2), (dog,1), (gnu,4), (owl,3))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:233"
+    },
+    {
+      "text": "%md \nThe implementation of `sortByKey` is actually very clever. First, it uses a range partitioner to partition the data in ranges within the shuffled RDD. Then it sorts these ranges individually with `mapPartition`s using standard sort mechanisms.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175703_2066338506",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p>The implementation of <code>sortByKey</code> is actually very clever. First, it uses a range partitioner to partition the data in ranges within the shuffled RDD. Then it sorts these ranges individually with <code>mapPartition</code>s using standard sort mechanisms.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:234"
+    },
+    {
+      "text": "%md\n###SQL transformations\n\n#### Join\n\n`join` performs an inner join using two pair RDDs. The keys must generally be of the same type.\n\n![innerjoin](http://www.vertabelo.com/_file/blog/sql-joins/sql-joins-venn-diagrams-inner-join.png)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175728_1804433902",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>SQL transformations</h3>\n<h4>Join</h4>\n<p><code>join</code> performs an inner join using two pair RDDs. The keys must generally be of the same type.</p>\n<p><img src=\"http://www.vertabelo.com/_file/blog/sql-joins/sql-joins-venn-diagrams-inner-join.png\" alt=\"innerjoin\" /></p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:235"
+    },
+    {
+      "text": "//def join(other: RDD[(K, W)]): RDD[(K, (V, W))]\nval l = List(\"dog\",\"salmon\",\"salmon\",\"rat\",\"elephant\")\nval a = sc.parallelize(l)\nval b = a.keyBy(_.length)\nval m = List(\"dog\",\"cat\",\"salmon\",\"rabbit\",\"turkey\",\"wolf\",\"bee\")\nval c = sc.parallelize(m)\nval d = c.keyBy(_.length)\nb.join(d).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120973_1008649781",
+      "id": "20160601-175902_1123050106",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, salmon, salmon, rat, elephant)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[15] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[16] at keyBy at <console>:33\nm: List[String] = List(dog, cat, salmon, rabbit, turkey, wolf, bee)\nc: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[17] at parallelize at <console>:31\nd: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[18] at keyBy at <console>:33\nres11: Array[(Int, (String, String))] = Array((6,(salmon,salmon)), (6,(salmon,rabbit)), (6,(salmon,turkey)), (6,(salmon,salmon)), (6,(salmon,rabbit)), (6,(salmon,turkey)), (3,(dog,dog)), (3,(dog,cat)), (3,(dog,bee)), (3,(rat,dog)), (3,(rat,cat)), (3,(rat,bee)))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:236"
+    },
+    {
+      "text": "%md\n#### Left Outer Join\n\n`leftOuterJoin` performs a left outer join using two key-value RDDs.\n\n![loj](http://www.vertabelo.com/_file/blog/sql-joins/sql-joins-venn-diagrams-left-outer-join.png)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-175910_960282165",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Left Outer Join</h4>\n<p><code>leftOuterJoin</code> performs a left outer join using two key-value RDDs.</p>\n<p><img src=\"http://www.vertabelo.com/_file/blog/sql-joins/sql-joins-venn-diagrams-left-outer-join.png\" alt=\"loj\" /></p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:237"
+    },
+    {
+      "text": "//def join(other: RDD[(K, W)]): RDD[(K, (V, W))]\nval l = List(\"dog\",\"salmon\",\"salmon\",\"rat\",\"elephant\")\nval a = sc.parallelize(l)\nval b = a.keyBy(_.length)\nval m = List(\"dog\",\"cat\",\"salmon\",\"rabbit\",\"turkey\",\"wolf\",\"bee\")\nval c = sc.parallelize(m)\nval d = c.keyBy(_.length)\nb.join(d).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-180037_980667711",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, salmon, salmon, rat, elephant)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[22] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[23] at keyBy at <console>:33\nm: List[String] = List(dog, cat, salmon, rabbit, turkey, wolf, bee)\nc: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[24] at parallelize at <console>:31\nd: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[25] at keyBy at <console>:33\nres14: Array[(Int, (String, String))] = Array((6,(salmon,salmon)), (6,(salmon,rabbit)), (6,(salmon,turkey)), (6,(salmon,salmon)), (6,(salmon,rabbit)), (6,(salmon,turkey)), (3,(dog,dog)), (3,(dog,cat)), (3,(dog,bee)), (3,(rat,dog)), (3,(rat,cat)), (3,(rat,bee)))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:238"
+    },
+    {
+      "text": "%md\n#### Full Outer Join\n`fullOuterJoin` performs the full outer join between two pair RDDs.\n\n![foj](http://www.vertabelo.com/_file/blog/sql-joins/sql-joins-venn-diagrams-full-outer-join.png)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-180041_302999662",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Full Outer Join</h4>\n<p><code>fullOuterJoin</code> performs the full outer join between two pair RDDs.</p>\n<p><img src=\"http://www.vertabelo.com/_file/blog/sql-joins/sql-joins-venn-diagrams-full-outer-join.png\" alt=\"foj\" /></p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:239"
+    },
+    {
+      "text": "//def fullOuterJoin(other: RDD[(K, W)]): \n//  RDD[(K, (Option[V], Option[W]))]\nval l = List( (\"cat\",2), (\"cat\", 5), (\"book\", 4),(\"cat\", 12))\nval m = List( (\"cat\",2), (\"cup\", 5), (\"mouse\", 4),(\"cat\", 12))\nval pairRDD1 = sc.parallelize(l)\nval pairRDD2 = sc.parallelize(m)\npairRDD1.fullOuterJoin(pairRDD2).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-180145_768004907",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[(String, Int)] = List((cat,2), (cat,5), (book,4), (cat,12))\nm: List[(String, Int)] = List((cat,2), (cup,5), (mouse,4), (cat,12))\npairRDD1: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[29] at parallelize at <console>:31\npairRDD2: org.apache.spark.rdd.RDD[(String, Int)] = ParallelCollectionRDD[30] at parallelize at <console>:31\nres17: Array[(String, (Option[Int], Option[Int]))] = Array((book,(Some(4),None)), (mouse,(None,Some(4))), (cup,(None,Some(5))), (cat,(Some(2),Some(2))), (cat,(Some(2),Some(12))), (cat,(Some(5),Some(2))), (cat,(Some(5),Some(12))), (cat,(Some(12),Some(2))), (cat,(Some(12),Some(12))))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:240"
+    },
+    {
+      "text": "%md\n#### Co-group\n\n`cogroup` groups data from both RDDs by key. ",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-180156_1935325618",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Co-group</h4>\n<p><code>cogroup</code> groups data from both RDDs by key.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:241"
+    },
+    {
+      "text": "//def cogroup(other: RDD[(K, W)]): \n//  RDD[(K, (Iterable[V], Iterable[W]))]\nval a = sc.parallelize(List(1, 2, 1, 3), 1)\nval b = a.map((_, \"b\"))\nval c = a.map((_, \"c\"))\nb.cogroup(c).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-180557_1480697507",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[34] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[35] at map at <console>:31\nc: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[36] at map at <console>:31\nres20: Array[(Int, (Iterable[String], Iterable[String]))] = Array((1,(CompactBuffer(b, b),CompactBuffer(c, c))), (3,(CompactBuffer(b),CompactBuffer(c))), (2,(CompactBuffer(b),CompactBuffer(c))))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:242"
+    },
+    {
+      "text": "%md\n###Actions\n\n\nThe simplest and most common action that returns data to our driver program is `collect`, which returns the entire RDD’s contents. \n\n`collect` suffers from the restriction that all of your data must fit on a single machine, as it all needs to be copied to the driver.\n\n####Fold\n\n`fold` aggregates the values of each partition. The aggregation variable within each partition is initialized with zeroValue, which should be the identity element for your operation.\n\nNote the difference between `foldLeft` and `foldRight`.\n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-180656_1950022780",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Actions</h3>\n<p>The simplest and most common action that returns data to our driver program is <code>collect</code>, which returns the entire RDD’s contents.</p>\n<p><code>collect</code> suffers from the restriction that all of your data must fit on a single machine, as it all needs to be copied to the driver.</p>\n<h4>Fold</h4>\n<p><code>fold</code> aggregates the values of each partition. The aggregation variable within each partition is initialized with zeroValue, which should be the identity element for your operation.</p>\n<p>Note the difference between <code>foldLeft</code> and <code>foldRight</code>.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:243"
+    },
+    {
+      "text": "//def fold(zeroValue: T)(op: (T, T) => T): T\nval a = sc.parallelize(List(1,2,3), 3)\na.fold(0)(_ + _)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-184050_1265960640",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[39] at parallelize at <console>:30\nres23: Int = 6\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:244"
+    },
+    {
+      "text": "%md\n####Reduce\n\nThe most common action on basic RDDs you will likely use is `reduce`, which takes a function that operates on two elements of the type in your RDD and returns a new element of the same type. \n\nThis function provides the well-known reduce functionality in Spark. Please note that any function you provide should be **commutative** in order to generate deterministic results.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-191754_146966221",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Reduce</h4>\n<p>The most common action on basic RDDs you will likely use is <code>reduce</code>, which takes a function that operates on two elements of the type in your RDD and returns a new element of the same type.</p>\n<p>This function provides the well-known reduce functionality in Spark. Please note that any function you provide should be <strong>commutative</strong> in order to generate deterministic results.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:245"
+    },
+    {
+      "text": "//def reduce(f: (T, T) => T): T\nval a = sc.parallelize(1 to 100, 3)\na.reduce(_ + _)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "tableHide": false,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-191837_910151641",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[40] at parallelize at <console>:30\nres26: Int = 5050\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:246"
+    },
+    {
+      "text": "%md\nBoth `fold` and `reduce` require that the return type of our result be the same type as that of the elements in the RDD we are operating over. \n\nThis works well for operations like sum, but sometimes we want to return a different type. For example, when computing a running average, we need to keep track of both the count so far and the number of elements, which requires us to return a pair. \n\n####Aggregate\n\nWe can use `aggregate` to compute the average of an RDD, avoiding a map before the fold.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-191903_478261703",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<p>Both <code>fold</code> and <code>reduce</code> require that the return type of our result be the same type as that of the elements in the RDD we are operating over.</p>\n<p>This works well for operations like sum, but sometimes we want to return a different type. For example, when computing a running average, we need to keep track of both the count so far and the number of elements, which requires us to return a pair.</p>\n<h4>Aggregate</h4>\n<p>We can use <code>aggregate</code> to compute the average of an RDD, avoiding a map before the fold.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:247"
+    },
+    {
+      "text": "//def aggregate(z: U)(f:(U, T) => U, g:(U, U) => U): U\nval l = List(1,2,3,4)\nval input = sc.parallelize(l)\ndef foo(acc: (Int,Int), value: Int) = \n  (acc._1 + value, acc._2 + 1)\ndef bar(ac1: (Int,Int), ac2: (Int,Int)) = \n  (ac1._1 + ac2._1, ac1._2 + ac2._2)\nval result = input.aggregate((0, 0))(foo,bar)\nval avg = result._1 / result._2.toDouble",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120974_1009804027",
+      "id": "20160601-191941_712415829",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[Int] = List(1, 2, 3, 4)\ninput: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[41] at parallelize at <console>:31\nfoo: (acc: (Int, Int), value: Int)(Int, Int)\nbar: (ac1: (Int, Int), ac2: (Int, Int))(Int, Int)\nresult: (Int, Int) = (10,4)\navg: Double = 2.5\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:248"
+    },
+    {
+      "text": "%md\n###Pair RDD Actions\n\nThe following operations are **actions** on `PairRDD`s.\n\n#### Lookup\n\n`lookup` scans the RDD for all keys that match the provided value and returns their values as a Scala sequence.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160601-192031_878767304",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Pair RDD Actions</h3>\n<p>The following operations are <strong>actions</strong> on <code>PairRDD</code>s.</p>\n<h4>Lookup</h4>\n<p><code>lookup</code> scans the RDD for all keys that match the provided value and returns their values as a Scala sequence.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:249"
+    },
+    {
+      "text": "//def lookup(key: K): Seq[V]\nval l = List(\"dog\", \"tiger\", \"lion\", \"cat\", \"panther\", \"eagle\")\nval a = sc.parallelize(l, 2)\nval b = a.map(x => (x.length, x))\nb.lookup(5)",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160601-192143_1959064877",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, tiger, lion, cat, panther, eagle)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[42] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[43] at map at <console>:33\nres32: Seq[String] = WrappedArray(tiger, eagle)\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:250"
+    },
+    {
+      "text": "%md\n#### CountByKey\n\n`countByKey` is very similar to `count`, but it counts the values of a `PairRDD` consisting of two-component tuples for each distinct key seperately.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-170752_81056377",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>CountByKey</h4>\n<p><code>countByKey</code> is very similar to <code>count</code>, but it counts the values of a <code>PairRDD</code> consisting of two-component tuples for each distinct key seperately.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:251"
+    },
+    {
+      "text": "//def countByKey(): Map[K, Long]\nval l = List((3, \"Gnu\"), (3, \"Yak\"), (5, \"Mouse\"), (3, \"Dog\"))\nval c = sc.parallelize(l)\nc.countByKey",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-170849_1375568800",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[(Int, String)] = List((3,Gnu), (3,Yak), (5,Mouse), (3,Dog))\nc: org.apache.spark.rdd.RDD[(Int, String)] = ParallelCollectionRDD[46] at parallelize at <console>:31\nres35: scala.collection.Map[Int,Long] = Map(5 -> 1, 3 -> 3)\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:252"
+    },
+    {
+      "text": "%md\n#### CollectAsMap\n\n`collectAsMap` is similar to `collect` but it converts a `PairRDD` into a Scala `Map` which preserves the key-value structure. See also the `combineByKey` example above.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-170858_2123046877",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>CollectAsMap</h4>\n<p><code>collectAsMap</code> is similar to <code>collect</code> but it converts a <code>PairRDD</code> into a Scala <code>Map</code> which preserves the key-value structure. See also the <code>combineByKey</code> example above.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:253"
+    },
+    {
+      "text": "//def collectAsMap(): Map[K, V]\nval a = sc.parallelize(List(1, 2, 1, 3), 1)\nval b = a.zip(a)\nb.collectAsMap",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171045_1325587450",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "a: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[49] at parallelize at <console>:30\nb: org.apache.spark.rdd.RDD[(Int, Int)] = ZippedPartitionsRDD2[50] at zip at <console>:31\nres38: scala.collection.Map[Int,Int] = Map(2 -> 2, 1 -> 1, 3 -> 3)\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:254"
+    },
+    {
+      "text": "%md\n#### FoldByKey\n\n`foldByKey` is analogous to `fold`, but it performs the fold operation separately for each key of the `PairRDD`.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171055_113347075",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>FoldByKey</h4>\n<p><code>foldByKey</code> is analogous to <code>fold</code>, but it performs the fold operation separately for each key of the <code>PairRDD</code>.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:255"
+    },
+    {
+      "text": "//def foldByKey(zeroValue: V)(func: (V, V) => V): RDD[(K, V)]\nval l = List(\"dog\", \"tiger\", \"lion\", \"cat\", \"panther\", \"eagle\")\nval a = sc.parallelize(l)\nval b = a.map(x => (x.length, x))\nb.foldByKey(\"\")(_ + _).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171151_26096153",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, tiger, lion, cat, panther, eagle)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[51] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[52] at map at <console>:33\nres41: Array[(Int, String)] = Array((4,lion), (5,tigereagle), (3,dogcat), (7,panther))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:256"
+    },
+    {
+      "text": "%md\n#### ReduceByKey\n\n`reduceByKey` provides the well-known reduce operation in Spark. Any function provided as an argument to `reduceByKey` must be commutative in order to generate deterministic results.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171205_1808208416",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>ReduceByKey</h4>\n<p><code>reduceByKey</code> provides the well-known reduce operation in Spark. Any function provided as an argument to <code>reduceByKey</code> must be commutative in order to generate deterministic results.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:257"
+    },
+    {
+      "text": "//def reduceByKey(func: (V, V) => V): RDD[(K, V)]\nval l = List(\"dog\", \"tiger\", \"lion\", \"cat\", \"panther\", \"eagle\")\nval a = sc.parallelize(l)\nval b = a.map(x => (x.length, x))\nb.reduceByKey(_ + _).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171310_903337225",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "l: List[String] = List(dog, tiger, lion, cat, panther, eagle)\na: org.apache.spark.rdd.RDD[String] = ParallelCollectionRDD[54] at parallelize at <console>:31\nb: org.apache.spark.rdd.RDD[(Int, String)] = MapPartitionsRDD[55] at map at <console>:33\nres44: Array[(Int, String)] = Array((4,lion), (5,tigereagle), (3,dogcat), (7,panther))\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:258"
+    },
+    {
+      "text": "%md\n\n### Problems\n\nFill in your answers in the empty cell below each question.\n\n",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171326_1977958416",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h3>Problems</h3>\n<p>Fill in your answers in the empty cell below each question.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:259"
+    },
+    {
+      "text": "val z = sc.parallelize(List(1,2,3,4,5,6), 2)\n\n// lets first print out the contents of the RDD with partition labels\ndef foo(index: Int, iter: Iterator[(Int)]) : Iterator[String] = {\n  iter.toList.map(x => \"[partID:\" +  index + \", val: \" + x + \"]\").iterator\n}\n\nz.mapPartitionsWithIndex(foo).collect",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120975_1009419278",
+      "id": "20160602-171519_1652857423",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "z: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[59] at parallelize at <console>:29\nfoo: (index: Int, iter: Iterator[Int])Iterator[String]\nres48: Array[String] = Array([partID:0, val: 1], [partID:0, val: 2], [partID:0, val: 3], [partID:1, val: 4], [partID:1, val: 5], [partID:1, val: 6])\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:260"
+    },
+    {
+      "text": "%md \n#### Problem 1\n\nRecall the function signature for `aggregate`.\n\n```scala\naggregate[U](zeroValue: U)(intra: (U, T) => U, inter: (U, U) => U): U\n```\n\nCompute the sum of the maximal values in each partition. What happens if you pass in `List(1, 2, 3, 4, 5, 6).max + 1` as the zero value?",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160602-171556_1352287756",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Problem 1</h4>\n<p>Recall the function signature for <code>aggregate</code>.</p>\n<pre><code class=\"scala\">aggregate[U](zeroValue: U)(intra: (U, T) =&gt; U, inter: (U, U) =&gt; U): U\n</code></pre>\n<p>Compute the sum of the maximal values in each partition. What happens if you pass in <code>List(1, 2, 3, 4, 5, 6).max + 1</code> as the zero value?</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:261"
+    },
+    {
+      "text": "// Solution",
+      "authenticationInfo": {},
+      "dateUpdated": "2016-06-13T16:25:52+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160602-171532_423828235",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "dateStarted": "2016-06-13T16:25:53+0000",
+      "dateFinished": "2016-06-13T16:25:53+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:262"
+    },
+    {
+      "text": "%md\n####Problem 2\n\nUse `aggregate` to concatenate `List(\"a\",\"b\",\"c\",\"d\",\"e\",\"f\")` parallelized over two partitions.",
+      "dateUpdated": "2016-06-13T16:25:20+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160608-230259_1881577971",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Problem 2</h4>\n<p>Use <code>aggregate</code> to concatenate <code>List(\"a\",\"b\",\"c\",\"d\",\"e\",\"f\")</code> parallelized over two partitions.</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:263"
+    },
+    {
+      "text": "// Solution",
+      "authenticationInfo": {},
+      "dateUpdated": "2016-06-13T16:25:58+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160602-171747_622513747",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "dateStarted": "2016-06-13T16:25:58+0000",
+      "dateFinished": "2016-06-13T16:25:58+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:264"
+    },
+    {
+      "text": "%md\n#### Problem 3\n\nLet's look at some actual data. This data captures two metrics: the monthly total for revolving credit owned by commercial institutions and the monthly rate of flow for revolving credit owned by commercial instuitions. Both metrics are in millions of dollars, and neither is seasonally adjusted. The data is stored as a CSV file on S3: `s3n://ds12-methods/tutorials/rdd-api/revolvingcredit.csv`.\n\n##### Part 1\n\nThe first two lines of the data have information that is not of interest. Write a function `drop(rdd: RDD[T], n: Int): RDD[T]` that drops the first `n` lines of data from the file. Note that RDDs take a type parameter, and are not covariant. You can specify an explicit type for `T` in your function definition.\n\n##### Part 2\n\nWhat is the average monthly revolving credit in the dataset?\n\n##### Part 3\n\nWhat are the top 3 months with the highest absolute revolving credit? What are the months with the highest positive gain in revolving credit? How about the months with the highest overall net change in revolving credit?",
+      "dateUpdated": "2016-06-13T18:38:08+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": true,
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160608-230443_752828524",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "<h4>Problem 3</h4>\n<p>Let's look at some actual data. This data captures two metrics: the monthly total for revolving credit owned by commercial institutions and the monthly rate of flow for revolving credit owned by commercial instuitions. Both metrics are in millions of dollars, and neither is seasonally adjusted. The data is stored as a CSV file on S3.</p>\n<h5>Part 1</h5>\n<p>The first two lines of the data have information that is not of interest. Write a function <code>drop(rdd: RDD[T], n: Int): RDD[T]</code> that drops the first <code>n</code> lines of data from the file. Note that RDDs take a type parameter, and are not covariant. You can specify an explicit type for <code>T</code> in your function definition.</p>\n<h5>Part 2</h5>\n<p>What is the average monthly revolving credit in the dataset?</p>\n<h5>Part 3</h5>\n<p>What are the top 3 months with the highest absolute revolving credit? What are the months with the highest positive gain in revolving credit? How about the months with the highest overall net change in revolving credit?</p>\n"
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:265",
+      "authenticationInfo": {},
+      "dateFinished": "2016-06-13T18:38:04+0000",
+      "dateStarted": "2016-06-13T18:38:04+0000",
+      "focus": true
+    },
+    {
+      "text": "// Solution Part 1",
+      "authenticationInfo": {},
+      "dateUpdated": "2016-06-13T16:26:04+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160610-214713_305233970",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "dateStarted": "2016-06-13T16:26:04+0000",
+      "dateFinished": "2016-06-13T16:26:05+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:266"
+    },
+    {
+      "text": "// Solution Part 2",
+      "authenticationInfo": {},
+      "dateUpdated": "2016-06-13T16:26:08+0000",
+      "config": {
+        "enabled": true,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "colWidth": 12
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835120976_1019807499",
+      "id": "20160610-215253_1503804127",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "2016-06-13T16:25:20+0000",
+      "dateStarted": "2016-06-13T16:26:08+0000",
+      "dateFinished": "2016-06-13T16:26:08+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:267"
+    },
+    {
+      "text": "// Solution Part 3",
+      "authenticationInfo": {},
+      "dateUpdated": "2016-06-13T16:26:20+0000",
+      "config": {
+        "colWidth": 12,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835168426_1443308769",
+      "id": "20160613-162608_486807350",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "2016-06-13T16:26:08+0000",
+      "dateStarted": "2016-06-13T16:26:20+0000",
+      "dateFinished": "2016-06-13T16:26:21+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:268"
+    },
+    {
+      "config": {
+        "colWidth": 12,
+        "graph": {
+          "mode": "table",
+          "height": 300,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1465835180922_-101842814",
+      "id": "20160613-162620_1255253356",
+      "dateCreated": "2016-06-13T16:26:20+0000",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:269"
+    }
+  ],
+  "name": "RDD API Tutorial - No Solutions",
+  "id": "2BNQ1VVN6",
+  "angularObjects": {
+    "2BNFDK6C1:shared_process": [],
+    "2BMJXP95T:shared_process": [],
+    "2BP2Y3J9P:shared_process": [],
+    "2BPKQATHV:shared_process": [],
+    "2BKKRN36Z:shared_process": [],
+    "2BM55D463:shared_process": [],
+    "2BMTPQBYG:shared_process": [],
+    "2BKB9Q5F2:shared_process": [],
+    "2BNYK5NWH:shared_process": [],
+    "2BNSNR8J8:shared_process": [],
+    "2BPKH2W6R:shared_process": [],
+    "2BMTBRB17:shared_process": [],
+    "2BKX6W1Y6:shared_process": [],
+    "2BNQB5TA4:shared_process": [],
+    "2BM7Y5ZRK:shared_process": [],
+    "2BN675825:shared_process": [],
+    "2BNVQ5116:shared_process": [],
+    "2BMSC321X:shared_process": [],
+    "2BKA4KPBJ:shared_process": [],
+    "2BPHHAPHJ:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}
